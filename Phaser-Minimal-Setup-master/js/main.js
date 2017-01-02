@@ -29,6 +29,7 @@ function create() {
 	createPlatform();
 	
 	cursors = game.input.keyboard.createCursorKeys();
+	game.input.onDown.add(go_fullscreen, this);
 }
 
 function update() {
@@ -70,5 +71,10 @@ function playerUpdate(){
 			p.body.velocity.y = p.jump;
 		}
 	});
+}
+
+function go_fullscreen(){
+	game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+	game.scale.startFullScreen();
 }
 
