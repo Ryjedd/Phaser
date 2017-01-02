@@ -5,12 +5,18 @@ function preload() {
 	
 	game.load.image('tux', 'res/tux.png');
 	game.load.image('brick', 'res/brick.png');
+	game.load.audio('jump',['res/jump.mp3','res/jump.ogg']);
+	game.load.audio('music',['res/music.wav','res/music.mp3','music/jump.ogg']);
 
 }
 
 function create() {
 	game.stage.backgroundColor = '#55F';
 	game.physics.startSystem(Phaser.Physics.ARCADE);
+	
+	//music
+	music = game.add.audio('music');
+	music.play('',0,1,true);
 	
 	//player
 	players = game.add.group();
@@ -59,6 +65,8 @@ function playerUpdate(){
 		
 		//jump controls
 		if(cursors.up.isDown && p.body.touching.down){
+			var snd = game.add.audio('jump');
+			snd.play();
 			p.body.velocity.y = p.jump;
 		}
 	});
